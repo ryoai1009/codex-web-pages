@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Codex ToDo">
+  <title>Codex ToDoリスト</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <p class="label">Simple Web Tool</p>
+      <h1>Codex ToDoリスト</h1>
+      <p class="lead">今日やることを追加して、完了チェックと期限管理ができます。</p>
+    </header>
+
+    <section class="panel" aria-labelledby="add-title">
+      <h2 id="add-title">タスクを追加</h2>
+      <form id="taskForm" class="task-form">
+        <label>
+          タスク名
+          <input id="taskInput" type="text" placeholder="例：買い物に行く" required>
+        </label>
+
+        <label>
+          期限日
+          <input id="dateInput" type="date">
+        </label>
+
+        <label>
+          お知らせ時刻
+          <input id="timeInput" type="time">
+        </label>
+
+        <button type="submit">追加する</button>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="list-title">
+      <div class="list-head">
+        <div>
+          <h2 id="list-title">タスク一覧</h2>
+          <p id="taskCount" class="count">0件のタスク</p>
+        </div>
+        <button id="clearDoneButton" class="secondary-button" type="button">完了を削除</button>
+      </div>
+
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+      <p id="emptyMessage" class="empty">まだタスクがありません。まずは1つ追加してみましょう。</p>
+    </section>
+
+    <section class="tips">
+      <h2>カレンダー連携について</h2>
+      <p>期限日を入れたタスクは「カレンダーに追加」ボタンから予定ファイルを作れます。ダウンロードしたファイルを開くと、Googleカレンダーやスマホのカレンダーに追加できます。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

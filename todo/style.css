@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #23313a;
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  line-height: 1.7;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.96)),
+    linear-gradient(135deg, #a7f3d0, #fde68a 45%, #bfdbfe);
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #0f766e;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0b5f59;
+}
+
+.app {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 34px 0 48px;
+}
+
+.header {
+  padding: 24px 0 28px;
+}
+
+.label {
+  margin: 0 0 8px;
+  color: #c2410c;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: clamp(34px, 8vw, 58px);
+  line-height: 1.15;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.lead {
+  max-width: 620px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.panel,
+.tips {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid rgba(35, 49, 58, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 32px rgba(35, 49, 58, 0.08);
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: #40525c;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid rgba(35, 49, 58, 0.2);
+  border-radius: 8px;
+  color: #23313a;
+  background: #ffffff;
+}
+
+input:focus {
+  outline: 3px solid rgba(15, 118, 110, 0.18);
+  border-color: #0f766e;
+}
+
+.list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.count {
+  margin: 0;
+  color: #667983;
+  font-size: 14px;
+}
+
+.secondary-button {
+  padding: 0 14px;
+  color: #0f766e;
+  background: #dff5ee;
+}
+
+.secondary-button:hover {
+  background: #c9ede2;
+}
+
+.task-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid rgba(35, 49, 58, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.task-item.done {
+  background: #f4f7f6;
+}
+
+.task-check {
+  width: 22px;
+  height: 22px;
+}
+
+.task-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.task-item.done .task-title {
+  color: #7a8b93;
+  text-decoration: line-through;
+}
+
+.task-meta {
+  margin: 2px 0 0;
+  color: #667983;
+  font-size: 14px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mini-button {
+  min-height: 38px;
+  padding: 0 12px;
+  color: #23313a;
+  background: #eef4f7;
+}
+
+.mini-button:hover {
+  background: #dce9ee;
+}
+
+.danger-button {
+  color: #ffffff;
+  background: #dc2626;
+}
+
+.danger-button:hover {
+  background: #b91c1c;
+}
+
+.empty {
+  margin: 10px 0 0;
+  color: #667983;
+}
+
+.tips {
+  background: rgba(255, 250, 235, 0.92);
+}
+
+.tips p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .app {
+    width: min(100% - 24px, 960px);
+    padding-top: 20px;
+  }
+
+  .panel,
+  .tips {
+    padding: 18px;
+  }
+
+  .task-form,
+  .task-item {
+    grid-template-columns: 1fr;
+  }
+
+  .list-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .secondary-button,
+  .task-form button {
+    width: 100%;
+  }
+
+  .task-actions {
+    justify-content: stretch;
+  }
+
+  .mini-button,
+  .danger-button {
+    flex: 1;
+  }
+}

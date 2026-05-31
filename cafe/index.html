@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Bloom Cafe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <p class="logo">Codex Bloom Cafe</p>
+      <div class="nav-links">
+        <a href="#menu">メニュー</a>
+        <a href="#info">店舗情報</a>
+        <a href="#access">アクセス</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="label">明るい一杯と、やさしい時間。</p>
+        <h1>Codex Bloom Cafe</h1>
+        <p class="catchcopy">Codexが全部やっちゃったよ。だけど、ちゃんと居心地よく作りました。</p>
+        <div class="hero-buttons">
+          <a class="button primary-button" href="#contact">お問い合わせ</a>
+          <button class="button secondary-button" id="reserve-button" type="button">予約する</button>
+        </div>
+      </div>
+      <img src="assets/cafe-photo.png" alt="明るいカフェ店内の写真風画像" class="hero-image">
+    </div>
+  </header>
+
+  <main>
+    <section id="menu" class="section">
+      <div class="section-heading">
+        <p class="label">Menu</p>
+        <h2>メニュー</h2>
+      </div>
+
+      <div class="menu-list">
+        <div class="menu-item">
+          <h3>ブレンドコーヒー</h3>
+          <p>毎日飲みたくなる、すっきりした定番の一杯。</p>
+          <span>500円</span>
+        </div>
+        <div class="menu-item">
+          <h3>ハニーラテ</h3>
+          <p>ミルクとはちみつのやさしい甘さ。</p>
+          <span>620円</span>
+        </div>
+        <div class="menu-item">
+          <h3>季節のチーズケーキ</h3>
+          <p>コーヒーに合う、なめらかな人気メニュー。</p>
+          <span>680円</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="info" class="section split-section">
+      <div>
+        <p class="label">Shop</p>
+        <h2>店舗情報</h2>
+        <p>小さな作業にも、友だちとのおしゃべりにも使いやすい、明るいカフェです。</p>
+      </div>
+
+      <div class="info-box">
+        <dl>
+          <div>
+            <dt>カフェ名</dt>
+            <dd>Codex Bloom Cafe</dd>
+          </div>
+          <div>
+            <dt>住所</dt>
+            <dd>東京都サンプル区 Codex町 1-2-3</dd>
+          </div>
+          <div>
+            <dt>電話</dt>
+            <dd>03-1234-5678</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="hours" class="section hours-section">
+      <p class="label">Hours</p>
+      <h2>営業時間</h2>
+      <div class="hours-grid">
+        <p>平日 <strong>8:00 - 19:00</strong></p>
+        <p>土日祝 <strong>9:00 - 18:00</strong></p>
+        <p>定休日 <strong>水曜日</strong></p>
+      </div>
+      <p id="today-message" class="today-message"></p>
+    </section>
+
+    <section id="access" class="section">
+      <p class="label">Access</p>
+      <h2>アクセス</h2>
+      <div class="access-layout">
+        <div class="map-box" aria-label="Googleマップ風のアクセス欄">
+          <div class="road road-horizontal"></div>
+          <div class="road road-vertical"></div>
+          <div class="map-pin">Codex Bloom Cafe</div>
+        </div>
+        <div>
+          <h3>Codex駅から徒歩5分</h3>
+          <p>駅の東口を出て、緑の多い通りをまっすぐ進むと右手にあります。</p>
+          <p>東京都サンプル区 Codex町 1-2-3</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <p class="label">Contact</p>
+      <h2>お問い合わせ</h2>
+      <p>席の確認や貸し切り相談など、お気軽にお問い合わせください。</p>
+      <a class="button primary-button" href="mailto:hello@example.com">メールで問い合わせる</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Codex Bloom Cafe</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

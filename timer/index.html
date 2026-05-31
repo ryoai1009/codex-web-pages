@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>集中モードタイマー 修正版</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      --main-color: #0f766e;
+      --accent-color: #f97316;
+      --soft-color: #e9f7f3;
+      min-height: 100vh;
+      margin: 0;
+      color: #24323a;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background: linear-gradient(135deg, var(--soft-color), #fff7ed);
+      line-height: 1.7;
+    }
+
+    body.mode-break5 {
+      --main-color: #2563eb;
+      --accent-color: #14b8a6;
+      --soft-color: #dbeafe;
+    }
+
+    body.mode-focus15 {
+      --main-color: #7c3aed;
+      --accent-color: #f59e0b;
+      --soft-color: #ede9fe;
+    }
+
+    body.mode-deep45 {
+      --main-color: #be123c;
+      --accent-color: #0891b2;
+      --soft-color: #ffe4e6;
+    }
+
+    .app {
+      width: min(940px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+
+    .label {
+      margin: 0 0 8px;
+      color: var(--accent-color);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(34px, 8vw, 60px);
+      line-height: 1.15;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin-bottom: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .timer-panel,
+    .status-panel {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid rgba(36, 50, 58, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 18px 36px rgba(36, 50, 58, 0.1);
+    }
+
+    .mode-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    button {
+      min-height: 46px;
+      border: 0;
+      border-radius: 8px;
+      color: #ffffff;
+      background: var(--main-color);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mode-button {
+      color: #24323a;
+      background: var(--soft-color);
+    }
+
+    .mode-button.active {
+      color: #ffffff;
+      background: var(--main-color);
+    }
+
+    .timer-card {
+      display: grid;
+      justify-items: center;
+      padding: 34px 20px;
+      border-radius: 8px;
+      background: radial-gradient(circle at top left, var(--soft-color), #ffffff 62%);
+    }
+
+    .mode-name {
+      margin-bottom: 8px;
+      color: var(--main-color);
+      font-weight: 700;
+    }
+
+    .time-display {
+      color: var(--main-color);
+      font-size: clamp(70px, 18vw, 150px);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .message {
+      min-height: 32px;
+      margin: 18px 0 24px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .control-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(110px, 1fr));
+      gap: 10px;
+      width: min(460px, 100%);
+    }
+
+    .secondary-button {
+      color: var(--main-color);
+      background: var(--soft-color);
+    }
+
+    .status-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .status-label {
+      margin: 0 0 8px;
+      color: var(--accent-color);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .focus-count {
+      margin: 0;
+      color: var(--main-color);
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .status-note {
+      max-width: 520px;
+      margin: 0;
+      color: #5f717a;
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        width: min(100% - 24px, 940px);
+        padding-top: 22px;
+      }
+
+      .timer-panel,
+      .status-panel {
+        padding: 16px;
+      }
+
+      .mode-buttons,
+      .control-buttons {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .status-panel {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .mode-buttons,
+      .control-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="mode-focus25">
+  <main class="app">
+    <header>
+      <p class="label">Fixed Version 2</p>
+      <h1>集中モードタイマー</h1>
+      <p class="lead">このページは修正版です。ボタンを押すと、時間と色が変わります。</p>
+    </header>
+
+    <section class="timer-panel">
+      <div class="mode-buttons">
+        <button class="mode-button active" type="button" data-mode="focus25">25分 集中</button>
+        <button class="mode-button" type="button" data-mode="break5">5分 休憩</button>
+        <button class="mode-button" type="button" data-mode="focus15">15分 短時間</button>
+        <button class="mode-button" type="button" data-mode="deep45">45分 じっくり</button>
+      </div>
+
+      <div class="timer-card">
+        <p id="modeName" class="mode-name">25分集中モード</p>
+        <div id="timeDisplay" class="time-display">25:00</div>
+        <p id="message" class="message">まずはモードかスタートを押してみましょう。</p>
+
+        <div class="control-buttons">
+          <button id="startButton" type="button">スタート</button>
+          <button id="stopButton" class="secondary-button" type="button">ストップ</button>
+          <button id="resetButton" class="secondary-button" type="button">リセット</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-panel">
+      <div>
+        <p class="status-label">今日の集中回数</p>
+        <p id="focusCount" class="focus-count">0回</p>
+      </div>
+      <p class="status-note">25分、15分、45分の集中モードが最後まで終わると1回カウントされます。</p>
+    </section>
+  </main>
+
+  <script>
+    const modes = {
+      focus25: { name: "\u0032\u0035\u5206\u96c6\u4e2d\u30e2\u30fc\u30c9", seconds: 25 * 60, bodyClass: "mode-focus25", startMessage: "\u0032\u0035\u5206\u3060\u3051\u96c6\u4e2d\u3057\u307e\u3057\u3087\u3046\u3002", endMessage: "\u0032\u0035\u5206\u96c6\u4e2d\u3067\u304d\u307e\u3057\u305f\u3002\u3088\u304f\u304c\u3093\u3070\u308a\u307e\u3057\u305f\uff01", countsAsFocus: true },
+      break5: { name: "\u0035\u5206\u4f11\u61a9\u30e2\u30fc\u30c9", seconds: 5 * 60, bodyClass: "mode-break5", startMessage: "\u0035\u5206\u3060\u3051\u4f11\u307f\u307e\u3057\u3087\u3046\u3002", endMessage: "\u4f11\u61a9\u7d42\u4e86\u3067\u3059\u3002\u3086\u3063\u304f\u308a\u623b\u308a\u307e\u3057\u3087\u3046\u3002", countsAsFocus: false },
+      focus15: { name: "\u0031\u0035\u5206\u77ed\u6642\u9593\u96c6\u4e2d\u30e2\u30fc\u30c9", seconds: 15 * 60, bodyClass: "mode-focus15", startMessage: "\u77ed\u304f\u96c6\u4e2d\u3057\u307e\u3057\u3087\u3046\u3002", endMessage: "\u0031\u0035\u5206\u96c6\u4e2d\u3067\u304d\u307e\u3057\u305f\u3002\u5c0f\u3055\u306a\u524d\u9032\u3067\u3059\uff01", countsAsFocus: true },
+      deep45: { name: "\u0034\u0035\u5206\u3058\u3063\u304f\u308a\u4f5c\u696d\u30e2\u30fc\u30c9", seconds: 45 * 60, bodyClass: "mode-deep45", startMessage: "\u3058\u3063\u304f\u308a\u9032\u3081\u307e\u3057\u3087\u3046\u3002", endMessage: "\u0034\u0035\u5206\u306e\u4f5c\u696d\u304c\u7d42\u308f\u308a\u307e\u3057\u305f\u3002\u3057\u3063\u304b\u308a\u96c6\u4e2d\u3067\u304d\u307e\u3057\u305f\uff01", countsAsFocus: true }
+    };
+
+    const modeButtons = document.querySelectorAll(".mode-button");
+    const modeName = document.getElementById("modeName");
+    const timeDisplay = document.getElementById("timeDisplay");
+    const message = document.getElementById("message");
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+    const resetButton = document.getElementById("resetButton");
+    const focusCount = document.getElementById("focusCount");
+
+    let currentModeKey = "focus25";
+    let remainingSeconds = modes[currentModeKey].seconds;
+    let timerId = null;
+    const todayKey = new Date().toLocaleDateString("ja-JP");
+    let focusData = loadFocusData();
+
+    if (focusData.date !== todayKey) {
+      focusData = { date: todayKey, count: 0 };
+      saveFocusData();
+    }
+
+    function loadFocusData() {
+      try {
+        return JSON.parse(localStorage.getItem("codexFocusCountFixed")) || { date: todayKey, count: 0 };
+      } catch (error) {
+        return { date: todayKey, count: 0 };
+      }
+    }
+
+    function saveFocusData() {
+      try {
+        localStorage.setItem("codexFocusCountFixed", JSON.stringify(focusData));
+      } catch (error) {
+        message.textContent = "\u3053\u306e\u30d6\u30e9\u30a6\u30b6\u3067\u306f\u96c6\u4e2d\u56de\u6570\u306e\u4fdd\u5b58\u304c\u7121\u52b9\u3067\u3059\u304c\u3001\u30bf\u30a4\u30de\u30fc\u306f\u4f7f\u3048\u307e\u3059\u3002";
+      }
+    }
+
+    function updateFocusCount() {
+      focusCount.textContent = `${focusData.count}\u56de`;
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const restSeconds = seconds % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(restSeconds).padStart(2, "0")}`;
+    }
+
+    function updateDisplay() {
+      timeDisplay.textContent = formatTime(remainingSeconds);
+      modeName.textContent = modes[currentModeKey].name;
+    }
+
+    function changeMode(modeKey) {
+      stopTimer(false);
+      currentModeKey = modeKey;
+      remainingSeconds = modes[currentModeKey].seconds;
+      document.body.className = modes[currentModeKey].bodyClass;
+      message.textContent = modes[currentModeKey].name + "\u3092\u9078\u3073\u307e\u3057\u305f\u3002";
+
+      modeButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === modeKey);
+      });
+
+      updateDisplay();
+    }
+
+    function startTimer() {
+      if (timerId !== null) {
+        return;
+      }
+
+      message.textContent = modes[currentModeKey].startMessage;
+      timerId = setInterval(() => {
+        remainingSeconds -= 1;
+        updateDisplay();
+
+        if (remainingSeconds <= 0) {
+          finishTimer();
+        }
+      }, 1000);
+    }
+
+    function stopTimer(showMessage = true) {
+      clearInterval(timerId);
+      timerId = null;
+
+      if (showMessage) {
+        message.textContent = "\u30bf\u30a4\u30de\u30fc\u3092\u30b9\u30c8\u30c3\u30d7\u3057\u307e\u3057\u305f\u3002";
+      }
+    }
+
+    function resetTimer() {
+      stopTimer(false);
+      remainingSeconds = modes[currentModeKey].seconds;
+      message.textContent = "\u30bf\u30a4\u30de\u30fc\u3092\u30ea\u30bb\u30c3\u30c8\u3057\u307e\u3057\u305f\u3002";
+      updateDisplay();
+    }
+
+    function finishTimer() {
+      stopTimer(false);
+      remainingSeconds = 0;
+      updateDisplay();
+
+      if (modes[currentModeKey].countsAsFocus) {
+        focusData.count += 1;
+        saveFocusData();
+        updateFocusCount();
+      }
+
+      message.textContent = modes[currentModeKey].endMessage;
+      alert(modes[currentModeKey].endMessage);
+    }
+
+    modeButtons.forEach((button) => button.addEventListener("click", () => changeMode(button.dataset.mode)));
+    startButton.addEventListener("click", startTimer);
+    stopButton.addEventListener("click", () => stopTimer(true));
+    resetButton.addEventListener("click", resetTimer);
+
+    updateDisplay();
+    updateFocusCount();
+  </script>
+</body>
+</html>

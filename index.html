@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codexで作ったWebページ集</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: #24323a;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.8;
+      background: linear-gradient(135deg, #e9f7f3, #fff7ed 52%, #dbeafe);
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    .label {
+      margin: 0 0 8px;
+      color: #c2410c;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 8vw, 58px);
+      line-height: 1.18;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 0 0 28px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    a {
+      display: block;
+      min-height: 180px;
+      padding: 24px;
+      border: 1px solid rgba(36, 50, 58, 0.12);
+      border-radius: 8px;
+      color: inherit;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 36px rgba(36, 50, 58, 0.1);
+    }
+
+    a:hover {
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 28px 0;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="label">Made with Codex</p>
+    <h1>Codexで作ったWebページ集</h1>
+    <p class="lead">カフェのホームページ、ToDoリスト、自己紹介ページ、集中モード付きタイマーをまとめた公開用ページです。</p>
+
+    <div class="links">
+      <a href="cafe/">
+        <h2>カフェのホームページ</h2>
+        <p>Codex Bloom Cafeの紹介ページです。店内画像、メニュー、店舗情報、アクセス欄があります。</p>
+      </a>
+
+      <a href="todo/">
+        <h2>ToDoリスト</h2>
+        <p>タスクの追加、完了チェック、削除、カレンダー用ファイル作成ができるページです。</p>
+      </a>
+
+      <a href="profile/">
+        <h2>自己紹介ページ</h2>
+        <p>知識ゼロからCodexをテーマにした、はじめての自己紹介サイトです。</p>
+      </a>
+
+      <a href="timer/">
+        <h2>集中モードタイマー</h2>
+        <p>25分集中、5分休憩、15分短時間、45分じっくり作業を選べるタイマーです。</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
