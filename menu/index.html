@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&#27598;&#26085;&#12398;&#29486;&#31435;&#12511;&#12491;&#12469;&#12452;&#12488;</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <p class="label">Daily Menu Planner</p>
+      <h1>&#27598;&#26085;&#12398;&#29486;&#31435;&#12511;&#12491;&#12469;&#12452;&#12488;</h1>
+      <p class="lead">&#20919;&#34101;&#24235;&#12395;&#12354;&#12427;&#39135;&#26448;&#12392;&#36023;&#12356;&#20986;&#12375;&#12375;&#12383;&#39135;&#26448;&#12363;&#12425;&#12289;&#26397;&#12539;&#26172;&#12539;&#22812;&#12398;&#29486;&#31435;&#26696;&#12434;&#20316;&#12426;&#12414;&#12377;&#12290;</p>
+    </section>
+
+    <section class="panel">
+      <form id="menuForm" class="menu-form">
+        <label>
+          &#20919;&#34101;&#24235;&#12395;&#12354;&#12427;&#39135;&#26448;
+          <textarea id="ingredientsInput" rows="4" placeholder="&#20363;&#65306;&#21365;&#12289;&#35910;&#33104;&#12289;&#12461;&#12515;&#12505;&#12484;&#12289;&#12372;&#12399;&#12435;"></textarea>
+        </label>
+
+        <label>
+          &#36023;&#12356;&#20986;&#12375;&#12391;&#36861;&#21152;&#12375;&#12383;&#39135;&#26448;
+          <textarea id="shoppingInput" rows="3" placeholder="&#20363;&#65306;&#40165;&#32905;&#12289;&#12488;&#12510;&#12488;&#12289;&#29275;&#20083;"></textarea>
+        </label>
+
+        <div class="date-grid">
+          <label>
+            &#36023;&#12356;&#20986;&#12375;&#39135;&#26448;&#12398;&#36062;&#21619;&#26399;&#38480;
+            <input id="shoppingBestBeforeDate" type="date">
+          </label>
+
+          <label>
+            &#36023;&#12356;&#20986;&#12375;&#39135;&#26448;&#12398;&#28040;&#36027;&#26399;&#38480;
+            <input id="shoppingUseByDate" type="date">
+          </label>
+        </div>
+
+        <div class="date-grid">
+          <label>
+            &#36062;&#21619;&#26399;&#38480;&#12364;&#36817;&#12356;&#39135;&#26448;
+            <input id="bestBeforeItem" type="text" placeholder="&#20363;&#65306;&#29275;&#20083;">
+          </label>
+
+          <label>
+            &#36062;&#21619;&#26399;&#38480;
+            <input id="bestBeforeDate" type="date">
+          </label>
+
+          <label>
+            &#28040;&#36027;&#26399;&#38480;&#12364;&#36817;&#12356;&#39135;&#26448;
+            <input id="useByItem" type="text" placeholder="&#20363;&#65306;&#40165;&#32905;">
+          </label>
+
+          <label>
+            &#28040;&#36027;&#26399;&#38480;
+            <input id="useByDate" type="date">
+          </label>
+        </div>
+
+        <label>
+          &#26009;&#29702;&#12398;&#12472;&#12515;&#12531;&#12523;
+          <select id="genreSelect">
+            <option value="japanese">&#21644;&#39080;</option>
+            <option value="western">&#27915;&#39080;</option>
+            <option value="chinese">&#20013;&#33775;&#39080;</option>
+            <option value="easy">&#12363;&#12435;&#12383;&#12435;</option>
+          </select>
+        </label>
+
+        <div class="buttons">
+          <button type="submit">&#29486;&#31435;&#12434;&#32771;&#12360;&#12427;</button>
+          <button id="resetButton" class="secondary-button" type="button">&#12522;&#12475;&#12483;&#12488;</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="resultArea" class="result-area hidden" aria-live="polite">
+      <article id="noticeCard" class="notice-card hidden">
+        <p class="meal-label">&#26399;&#38480;&#12398;&#12362;&#30693;&#12425;&#12379;</p>
+        <ul id="noticeList"></ul>
+      </article>
+
+      <article class="meal-card">
+        <p class="meal-label">&#12362;&#25163;&#36605;&#26009;&#29702;</p>
+        <h2 id="easyTitle">---</h2>
+        <p id="easyText">---</p>
+        <a id="easyRecipeLink" class="recipe-link" href="recipe.html?type=easy&genre=japanese">&#12524;&#12471;&#12500;&#12434;&#35211;&#12427;</a>
+      </article>
+
+      <article class="meal-card">
+        <p class="meal-label">&#25163;&#12398;&#36796;&#12435;&#12384;&#26009;&#29702;</p>
+        <h2 id="specialTitle">---</h2>
+        <p id="specialText">---</p>
+        <a id="specialRecipeLink" class="recipe-link" href="recipe.html?type=special&genre=japanese">&#12524;&#12471;&#12500;&#12434;&#35211;&#12427;</a>
+      </article>
+
+      <article class="meal-card">
+        <p class="meal-label">&#28040;&#36027;&#26399;&#38480;&#20778;&#20808;&#12398;&#26009;&#29702;</p>
+        <h2 id="useByTitle">---</h2>
+        <p id="useByText">---</p>
+        <a id="useByRecipeLink" class="recipe-link" href="recipe.html?type=useBy&genre=japanese">&#12524;&#12471;&#12500;&#12434;&#35211;&#12427;</a>
+      </article>
+
+      <article class="shopping-card">
+        <p class="meal-label">&#36023;&#12356;&#29289;&#12513;&#12514;</p>
+        <ul id="shoppingList"></ul>
+      </article>
+
+      <article class="suggestion-card">
+        <p class="meal-label">&#36023;&#12356;&#36275;&#12375;&#25552;&#26696;</p>
+        <h2 id="suggestionTitle">---</h2>
+        <p id="suggestionText">---</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
