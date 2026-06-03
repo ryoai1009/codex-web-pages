@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅行の持ち物チェックリスト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <p class="label">Travel Checklist</p>
+        <h1>旅行の持ち物チェックリスト</h1>
+        <p class="lead">旅行前に、忘れ物をさっと確認できるスマホ向けチェックツールです。</p>
+      </div>
+      <div class="suitcase" aria-hidden="true">
+        <div class="handle"></div>
+        <div class="case-body">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>旅行タイプ</h2>
+          <p>旅行の内容を選ぶと、必要な持ち物リストが切り替わります。</p>
+        </div>
+        <button id="resetButton" class="reset-button" type="button">リセット</button>
+      </div>
+
+      <div class="trip-types" aria-label="旅行タイプを選ぶ">
+        <button class="trip-button active" type="button" data-trip="one-night">1泊</button>
+        <button class="trip-button" type="button" data-trip="long-stay">2泊以上</button>
+        <button class="trip-button" type="button" data-trip="business">出張</button>
+        <button class="trip-button" type="button" data-trip="event">イベント</button>
+      </div>
+
+      <div class="date-box">
+        <label for="departureDate">出発日メモ</label>
+        <input id="departureDate" type="date">
+        <p id="dateMessage">出発日を入れると、残り日数を表示します。</p>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-label">
+          <span>準備の進み具合</span>
+          <strong id="progressText">0%</strong>
+        </div>
+        <div class="progress-bar" aria-hidden="true">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="summary" aria-live="polite">
+        <div>
+          <span id="checkedCount">0</span>
+          <small>チェック済み</small>
+        </div>
+        <div>
+          <span id="remainingCount">0</span>
+          <small>残り</small>
+        </div>
+        <div>
+          <span id="totalCount">0</span>
+          <small>合計</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel add-panel">
+      <h2>持ち物を追加</h2>
+      <p>自分だけの持ち物を追加できます。追加したものもチェック数に入ります。</p>
+      <form id="addForm" class="add-form">
+        <input id="newItemName" type="text" placeholder="例：酔い止め、推しグッズ、予備マスク">
+        <select id="newItemCategory">
+          <option value="貴重品">貴重品</option>
+          <option value="衣類">衣類</option>
+          <option value="洗面・ケア用品">洗面・ケア用品</option>
+          <option value="ガジェット">ガジェット</option>
+          <option value="あると便利なもの">あると便利なもの</option>
+        </select>
+        <label class="important-toggle">
+          <input id="newItemImportant" type="checkbox">
+          忘れやすい
+        </label>
+        <button type="submit">追加</button>
+      </form>
+    </section>
+
+    <section class="quick-note">
+      <strong>忘れやすいもの</strong>
+      <p>財布、スマホ、身分証、充電器、常備薬は出発直前にもう一度確認しましょう。</p>
+    </section>
+
+    <section id="checklist" class="checklist" aria-label="持ち物チェックリスト"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

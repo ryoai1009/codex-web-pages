@@ -1,0 +1,533 @@
+:root {
+  --bg: #f5fbff;
+  --text: #243044;
+  --muted: #687386;
+  --line: #dce7f3;
+  --card: #ffffff;
+  --accent: #2878d0;
+  --accent-soft: #e6f2ff;
+  --notice: #fff2bf;
+  --notice-line: #e3b630;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, #dff5ff 0, transparent 320px),
+    linear-gradient(180deg, var(--bg), #ffffff);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 44px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 24px;
+  align-items: center;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 45px rgba(53, 95, 140, 0.12);
+}
+
+.label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.lead {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.suitcase {
+  position: relative;
+  width: 158px;
+  height: 150px;
+  margin-left: auto;
+}
+
+.handle {
+  width: 74px;
+  height: 42px;
+  margin: 0 auto -6px;
+  border: 9px solid #597897;
+  border-bottom: 0;
+  border-radius: 26px 26px 0 0;
+}
+
+.case-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: 112px;
+  padding: 20px 18px;
+  border: 5px solid #35536f;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #f4b64a, #fbda72);
+}
+
+.case-body::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  width: 36px;
+  height: 12px;
+  border-radius: 999px;
+  background: #ffffffaa;
+}
+
+.case-body span {
+  border-radius: 999px;
+  background: #d08925;
+}
+
+.panel {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.panel-heading {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.panel-heading h2 {
+  margin-bottom: 6px;
+}
+
+.panel-heading p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.reset-button,
+.trip-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.reset-button {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  color: #24527e;
+  background: #eef6ff;
+}
+
+.trip-types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.trip-button {
+  min-height: 44px;
+  padding: 10px 12px;
+  color: #36516f;
+  background: #edf5fb;
+  font-weight: 700;
+}
+
+.trip-button.active {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.reset-button:hover,
+.trip-button:hover {
+  transform: translateY(-1px);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.summary div {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.summary span {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.summary small {
+  color: var(--muted);
+}
+
+.date-box {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.date-box label {
+  font-weight: 800;
+}
+
+.date-box input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #cddbea;
+  border-radius: 8px;
+  color: var(--text);
+  background: #ffffff;
+}
+
+.date-box p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.progress-area {
+  margin-top: 18px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.progress-label strong {
+  color: var(--accent);
+}
+
+.progress-bar {
+  height: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8f0f8;
+}
+
+.progress-bar div {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2878d0, #38b6a8);
+  transition: width 0.25s ease;
+}
+
+.add-panel h2 {
+  margin-bottom: 8px;
+}
+
+.add-panel p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-form input[type="text"],
+.add-form select {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 12px;
+  border: 1px solid #cddbea;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.important-toggle {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid #e5edf6;
+  border-radius: 8px;
+  background: #fbfdff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.important-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.add-form button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--accent);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.quick-note {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--notice-line);
+  border-radius: 8px;
+  background: #fff8d7;
+  line-height: 1.7;
+}
+
+.quick-note strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #7a5800;
+}
+
+.quick-note p {
+  margin-bottom: 0;
+  color: #5f5360;
+}
+
+.checklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.category-card h3 {
+  margin-bottom: 14px;
+  font-size: 1.14rem;
+}
+
+.item-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid #e5edf6;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.check-item.important {
+  border-color: var(--notice-line);
+  background: var(--notice);
+}
+
+.check-item input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+}
+
+.item-text {
+  display: grid;
+  gap: 4px;
+  line-height: 1.5;
+}
+
+.item-text strong {
+  font-size: 0.98rem;
+}
+
+.item-text small {
+  color: var(--muted);
+}
+
+.check-item.done {
+  color: #7a8492;
+  background: #f4f7fa;
+}
+
+.check-item.done strong {
+  text-decoration: line-through;
+}
+
+.badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #6b4d00;
+  background: #ffe48a;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .app {
+    width: min(100% - 22px, 1080px);
+    padding-top: 14px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .suitcase {
+    width: 130px;
+    height: 128px;
+    margin: 0;
+  }
+
+  .case-body {
+    height: 96px;
+  }
+
+  .panel-heading {
+    display: grid;
+  }
+
+  .reset-button {
+    width: 100%;
+  }
+
+  .trip-types,
+  .summary,
+  .checklist,
+  .add-form {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  .trip-button,
+  .reset-button,
+  .add-form button {
+    min-height: 52px;
+  }
+
+  .summary {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .summary div {
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .summary span {
+    font-size: 1.55rem;
+  }
+
+  .category-card {
+    padding: 16px;
+  }
+
+  .check-item {
+    padding: 14px 12px;
+  }
+
+  .check-item input {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app {
+    width: min(100% - 16px, 1080px);
+  }
+
+  .hero,
+  .panel {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+  }
+
+  .trip-types {
+    gap: 8px;
+  }
+
+  .trip-button {
+    padding: 10px 8px;
+  }
+}
