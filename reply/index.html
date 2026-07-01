@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>返信下書き生成ツール</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="intro">
+      <p class="label">Reply Draft Tool</p>
+      <h1>返信下書き生成ツール</h1>
+      <p class="lead">相手から来たメッセージをもとに、返信案を3パターン作る小さなWebツールです。</p>
+    </section>
+
+    <section class="phone">
+      <div class="phone-top">
+        <span></span>
+        <strong>返信メモ</strong>
+        <span></span>
+      </div>
+
+      <section class="chat-area" aria-label="メッセージ入力">
+        <div class="bubble received">
+          <p>相手から来たメッセージをここに入力して、返信案を作ります。</p>
+        </div>
+
+        <label for="messageInput">相手から来たメッセージ</label>
+        <textarea id="messageInput" placeholder="例：明日の集合時間、10時で大丈夫？"></textarea>
+
+        <div class="select-grid">
+          <label>
+            相手との関係性
+            <select id="relationSelect">
+              <option value="friend">友人</option>
+              <option value="work">仕事相手</option>
+              <option value="family">家族</option>
+              <option value="senior">目上の人</option>
+            </select>
+          </label>
+
+          <label>
+            返信のトーン
+            <select id="toneSelect">
+              <option value="normal">自然</option>
+              <option value="polite">丁寧</option>
+              <option value="warm">やさしい</option>
+              <option value="short">短め</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="generateButton" class="primary-button" type="button">返信案を作る</button>
+      </section>
+
+      <section class="results-area" aria-label="返信案">
+        <div class="section-title">
+          <h2>返信案</h2>
+          <p>気に入った案の「これを使う」を押すと、下で編集できます。</p>
+        </div>
+        <div id="draftList" class="draft-list">
+          <p class="empty-message">まだ返信案はありません。</p>
+        </div>
+      </section>
+
+      <section class="edit-area" aria-label="選んだ返信を編集">
+        <div class="section-title">
+          <h2>自分で少し直す</h2>
+          <p>選んだ返信文を、自分の言葉に直してからコピーできます。</p>
+        </div>
+
+        <label for="editInput">編集する返信文</label>
+        <textarea id="editInput" placeholder="返信案を選ぶと、ここに入ります。"></textarea>
+
+        <div class="button-row">
+          <button id="copyButton" class="copy-button" type="button">コピーする</button>
+          <button id="clearButton" class="ghost-button" type="button">クリア</button>
+        </div>
+        <p id="copyMessage" class="copy-message" aria-live="polite"></p>
+
+        <div class="before-after">
+          <article>
+            <h3>Before</h3>
+            <p id="beforeText">AI案を選ぶと表示されます。</p>
+          </article>
+          <article>
+            <h3>After</h3>
+            <p id="afterText">自分で直した文が表示されます。</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
